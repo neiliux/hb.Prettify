@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Sandbox for hb.prettify</title>
+	<link rel="stylesheet" type="text/css" href="lib/prettify-tomorrow-night.css" />
+    <script type="text/javascript" src="lib/angular.js"></script>
+	<script type="text/javascript" src="lib/prettify.js"></script>
+    <script type="text/javascript" src="src/hb.prettify.js"></script>
+    <script type="text/javascript">
+        'use strict';
+        var sandbox = angular.module('sandbox', ['hb.prettify'], null);
+        var sandboxCtrl = sandbox.controller('sandboxCtrl', [
+                function () {
+                }
+        ]);
+    </script>
+</head>
+<body>
+    <div data-ng-app="sandbox" data-ng-controller="sandboxCtrl">
+		<pre data-prettify>public class Foobar() { }</pre>
+    </div>
+</body>
+</html>
