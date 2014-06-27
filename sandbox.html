@@ -11,14 +11,22 @@
         'use strict';
         var sandbox = angular.module('sandbox', ['hb.prettify'], null);
         var sandboxCtrl = sandbox.controller('sandboxCtrl', [
-                function () {
-                }
+			'$scope',
+            '$sce',
+            function ($scope, $sce) {
+                $scope.dynamicSnippet = $sce.trustAsHtml('<pre data-prettify>public class DynamicFoobar() { }</pre>');
+            }
         ]);
     </script>
 </head>
 <body>
     <div data-ng-app="sandbox" data-ng-controller="sandboxCtrl">
+        <div>Explicit invocation of directive:</div>
 		<pre data-prettify>public class Foobar() { }</pre>
-    </div>
+		<div>Invocation of directive from dynamic content:</div>
+        <div data-compile data-ng-bind-html="dynamicSnippet"></div>
+        <div>Invocation of directive from dynamic content without specifying compile directive on parent element:</div>
+        <div data-ng-bind-html="dynamicSnippet"></div>
+	</div>
 </body>
 </html>

@@ -16,3 +16,24 @@ hbPrettify.directive('prettify',
 		};
 	}
 );
+
+hbPrettify.directive('compile', [
+	'$compile',
+	function($compile) {
+		return function (scope, element, attrs) {
+			var watch;
+			
+			function expr(scope) {
+				return scope.$eval(attrs.compile);
+			}			
+			
+			function listener(value) {
+				element.html(value);
+				$compile(element.contents())(scope);
+				watch();
+			}
+			
+			watch = scope.$watch(expr, listener);
+		}
+	}
+]);
